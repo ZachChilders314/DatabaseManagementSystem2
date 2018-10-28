@@ -90,7 +90,13 @@ public class Table {
 		sql += ") VALUES (";
 		for(int i = 0; i < size; i++) {
 			
-			sql += "'" + map.get(headerFields[i]) + "'";
+			String value = map.get(headerFields[i]);
+			
+			if(value.length() > headerFields[i].getSize()) {
+				value = value.substring(0, headerFields[i].getSize());
+			}
+			
+			sql += "'" + value + "'";
 			if(i != size - 1) { sql += ","; }
 			
 		}
